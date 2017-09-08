@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
 
+from flask.ext.heroku import Heroku
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/tokeypokey'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/tokeypokey'
+heroku = Heroku(app)
 db = SQLAlchemy(app)
 
 # Create our database model
