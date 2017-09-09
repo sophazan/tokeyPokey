@@ -58,7 +58,7 @@ class Question(db.Model):
     def __init__(self, question_str):
         self.question_str = question_str
 
-def Result_Table(db.Model):
+class Result_Table(db.Model):
     __tablename__ = "result_table"
     id = db.Column(db.Integer, primary_key=True)
     game_id = db.Column(db.Integer)
