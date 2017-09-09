@@ -20,6 +20,49 @@ class User(db.Model):
     def __repr__(self):
         return '<E-mail %r>' % self.email
 
+class Users_Game(db.Model):
+    __tablename__ = "users_game"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    game_id = db.Column(db.Integer)
+
+    def __init__(self, user_id, game_id):
+        self.user_id = user_id
+        self.game_id = game_id
+
+class Game(db.Model):
+    __tablename__ = "game"
+    id = db.Column(db.Integer, primary_key=True)
+    rand_num = db.Column(db.Integer, unique=True)
+    status = db.Column(db.String(120))
+
+    def __init__(self, user_id, game_id):
+        self.rand_num = rand_num
+        self.status = status
+
+class Game_Question(db.Model):
+    __tablename__ = "game_question"
+    id = db.Column(db.Integer, primary_key=True)
+    game_id = db.Column(db.Integer)
+    question_id = db.Column(db.Integer)
+
+    def __init__(self, game_id, question_id):
+        self.game_id = game_id
+        self.question_id = question_id
+
+class Question(db.Model):
+    __tablename__ = "question"
+    id = db.Column(db.Integer, primary_key=True)
+    question_str = db.Column(db.String, unique=True)
+
+    def __init__(self, question_str):
+        self.question_str = question_str
+
+def Result_Table(db.Model):
+    __tablename__ = "result_table"
+    
+
+
 # Set "homepage" to index.html
 @app.route('/')
 def index():
