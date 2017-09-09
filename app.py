@@ -36,7 +36,7 @@ class Game(db.Model):
     rand_num = db.Column(db.Integer, unique=True)
     status = db.Column(db.String(120))
 
-    def __init__(self, user_id, game_id):
+    def __init__(self, rand_num, status):
         self.rand_num = rand_num
         self.status = status
 
@@ -60,8 +60,21 @@ class Question(db.Model):
 
 def Result_Table(db.Model):
     __tablename__ = "result_table"
-    
+    id = db.Column(db.Integer, primary_key=True)
+    game_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
+    question_id = id.Column(db.Integer)
+    answer = db.Column(db.Boolean(120))
+    guess = db.Column(db.Integer)
+    guess_diff = db.Column(db.Integer)
 
+    def __init__(self, game_id, user_id, question_id, answer, guess, guess_diff):
+        self.game_id = game_id
+        self.user_id = user_id        
+        self.question_id = question_id
+        self.answer = answer        
+        self.guess = guess
+        self.guess_diff = guess_diff
 
 # Set "homepage" to index.html
 @app.route('/')
