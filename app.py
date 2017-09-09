@@ -63,7 +63,7 @@ class Result_Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     game_id = db.Column(db.Integer)
     user_id = db.Column(db.Integer)
-    question_id = id.Column(db.Integer)
+    question_id = db.Column(db.Integer)
     answer = db.Column(db.Boolean(120))
     guess = db.Column(db.Integer)
     guess_diff = db.Column(db.Integer)
