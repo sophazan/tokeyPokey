@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
 
 from flask.ext.heroku import Heroku
+import flask.ext.restless
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
@@ -94,6 +95,16 @@ def prereg():
             db.session.commit()
             return render_template('success.html')
     return render_template('index.html')
+
+manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
+
+User_blueprint = manager.create_api(User, methods=['GET', 'POST'])
+Users_Game_blueprint = manager.create_api(Users_Game, methods=['GET', 'POST'])
+Game_blueprint = manager.create_api(Game, methods=['GET'])
+Game_Question_blueprint = manager.create_api(Game_Question, methods=['GET'])
+Question_blueprint = manager.create_api(Question, methods=['GET'])
+Result_Table_blueprint = manager.create_api(Result_Table, methods=['GET'])
+
 
 if __name__ == '__main__':
     app.debug = True
