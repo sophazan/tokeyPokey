@@ -98,12 +98,19 @@ def prereg():
 
 manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 
-User_blueprint = manager.create_api(User, methods=['GET', 'POST'])
-Users_Game_blueprint = manager.create_api(Users_Game, methods=['GET', 'POST'])
-Game_blueprint = manager.create_api(Game, methods=['GET'])
-Game_Question_blueprint = manager.create_api(Game_Question, methods=['GET'])
-Question_blueprint = manager.create_api(Question, methods=['GET'])
-Result_Table_blueprint = manager.create_api(Result_Table, methods=['GET'])
+User_blueprint = manager.create_api_blueprint(User, methods=['GET', 'POST'])
+app.register_blueprint(User_blueprint)
+Users_Game_blueprint = manager.create_api_blueprint(Users_Game, methods=['GET', 'POST'])
+app.register_blueprint(Users_Game_blueprint)
+Game_blueprint = manager.create_api_blueprint(Game, methods=['GET'])
+app.register_blueprint(Game_blueprint)
+Game_Question_blueprint = manager.create_api_blueprint(Game_Question, methods=['GET'])
+app.register_blueprint(Game_Question_blueprint)
+Question_blueprint = manager.create_api_blueprint(Question, methods=['GET'])
+app.register_blueprint(Question_blueprint)
+Result_Table_blueprint = manager.create_api_blueprint(Result_Table, methods=['GET'])
+app.register_blueprint(Result_Table_blueprint)
+
 
 
 if __name__ == '__main__':
